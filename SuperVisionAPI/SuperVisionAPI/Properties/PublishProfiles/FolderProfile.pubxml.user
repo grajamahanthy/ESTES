@@ -6,7 +6,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\graja\Desktop\ESTES-PROD\Publish\SuperVisionAPI</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionAPI\Publish</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Areas/HelpPage/HelpPage.css">
@@ -238,10 +238,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/24/2018 13:38:24</publishTime>
     </File>
     <File Include="bin/SuperVisionAPI.dll">
-      <publishTime>06/19/2020 23:44:59</publishTime>
+      <publishTime>07/02/2020 01:01:25</publishTime>
     </File>
     <File Include="bin/SuperVisionAPI.pdb">
-      <publishTime>06/19/2020 23:44:59</publishTime>
+      <publishTime>07/02/2020 01:01:25</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>11/28/2018 13:00:36</publishTime>
@@ -379,7 +379,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>06/05/2020 22:17:53</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>06/19/2020 23:45:01</publishTime>
+      <publishTime>07/02/2020 01:01:27</publishTime>
     </File>
   </ItemGroup>
 </Project>
