@@ -1,0 +1,10 @@
+C:\Users\graja\source\repos\SuperVisionToIBMBrassringScheduler\IntegrationLib\bin\Debug\IntegrationLib.dll
+C:\Users\graja\source\repos\SuperVisionToIBMBrassringScheduler\IntegrationLib\bin\Debug\IntegrationLib.pdb
+C:\Users\graja\source\repos\SuperVisionToIBMBrassringScheduler\IntegrationLib\bin\Debug\Newtonsoft.Json.dll
+C:\Users\graja\source\repos\SuperVisionToIBMBrassringScheduler\IntegrationLib\bin\Debug\Renci.SshNet.dll
+C:\Users\graja\source\repos\SuperVisionToIBMBrassringScheduler\IntegrationLib\bin\Debug\Newtonsoft.Json.xml
+C:\Users\graja\source\repos\SuperVisionToIBMBrassringScheduler\IntegrationLib\bin\Debug\Renci.SshNet.xml
+C:\Users\graja\source\repos\SuperVisionToIBMBrassringScheduler\IntegrationLib\obj\Debug\IntegrationLib.csproj.CoreCompileInputs.cache
+C:\Users\graja\source\repos\SuperVisionToIBMBrassringScheduler\IntegrationLib\obj\Debug\IntegrationLib.csproj.CopyComplete
+C:\Users\graja\source\repos\SuperVisionToIBMBrassringScheduler\IntegrationLib\obj\Debug\IntegrationLib.dll
+C:\Users\graja\source\repos\SuperVisionToIBMBrassringScheduler\IntegrationLib\obj\Debug\IntegrationLib.pdb

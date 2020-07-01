@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationLib", "IntegrationLib\IntegrationLib.csproj", "{2F8BF73C-A983-4257-BDDA-08C8CA672C61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperVisionAPI", "SuperVisionAPI\SuperVisionAPI.csproj", "{4D09FC50-DC50-4CB9-9106-D414507CF123}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F8BF73C-A983-4257-BDDA-08C8CA672C61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F8BF73C-A983-4257-BDDA-08C8CA672C61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F8BF73C-A983-4257-BDDA-08C8CA672C61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F8BF73C-A983-4257-BDDA-08C8CA672C61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D09FC50-DC50-4CB9-9106-D414507CF123}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D09FC50-DC50-4CB9-9106-D414507CF123}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D09FC50-DC50-4CB9-9106-D414507CF123}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D09FC50-DC50-4CB9-9106-D414507CF123}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C94C5F2-094A-44A0-855B-59810B1A8F44}
+	EndGlobalSection
+EndGlobal

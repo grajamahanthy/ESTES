@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuperVisionToIBMBrassringScheduler", "SuperVisionToIBMBrassringScheduler\SuperVisionToIBMBrassringScheduler.csproj", "{222AF4AC-36E2-4F06-96E3-6912AD5640BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationLib", "IntegrationLib\IntegrationLib.csproj", "{2F8BF73C-A983-4257-BDDA-08C8CA672C61}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{222AF4AC-36E2-4F06-96E3-6912AD5640BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{222AF4AC-36E2-4F06-96E3-6912AD5640BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{222AF4AC-36E2-4F06-96E3-6912AD5640BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{222AF4AC-36E2-4F06-96E3-6912AD5640BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F8BF73C-A983-4257-BDDA-08C8CA672C61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F8BF73C-A983-4257-BDDA-08C8CA672C61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F8BF73C-A983-4257-BDDA-08C8CA672C61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F8BF73C-A983-4257-BDDA-08C8CA672C61}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DF27B903-2741-4CDE-8283-CA5556CC1178}
+	EndGlobalSection
+EndGlobal
