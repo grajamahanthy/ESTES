@@ -1,0 +1,6 @@
+ForFiles /p "E:\Brassring\Success" /s /d -14 /c "cmd /c del /q @file"
+ForFiles /p "E:\Brassring\Error" /s /d -14 /c "cmd /c del /q @file"
+ForFiles /p "E:\Brassring\Logs" /s /d -14 /c "cmd /c del /q @file"
+ForFiles /p "E:\Brassring\Temp\Source" /s /d -14 /c "cmd /c del /q @file"
+ForFiles /p "E:\SuperVision\Logs" /s /d -14 /c "cmd /c del /q @file"
+ECHO ""
