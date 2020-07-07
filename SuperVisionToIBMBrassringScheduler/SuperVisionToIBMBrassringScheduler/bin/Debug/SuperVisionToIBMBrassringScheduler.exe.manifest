@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vID9bF976o0U29LNw2EC4qlWYcX1ogzBna5AGwRYdgU=</dsig:DigestValue>
+        <dsig:DigestValue>uXAaKQTuMy/A8S14P9SoiLcCJM5Yl1bH8jRvtBsx0+Y=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -85,7 +85,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>O7yct3XHU0EXeOKPG2s8QCPBHro1AfAmO+gz//Mywcc=</dsig:DigestValue>
+        <dsig:DigestValue>8EEHpX71UW/KtuF7nwZtJc4lzw5R7Wd7cx8fLjqgsP8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -125,13 +125,13 @@
       <dsig:DigestValue>NISJ4OV+GRsg+q3uYdSf3b1k22pfppVxMBDSRxv9VMU=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="SuperVisionToIBMBrassringScheduler.exe.config" size="343">
+  <file name="SuperVisionToIBMBrassringScheduler.exe.config" size="354">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>cy5foqMS1v675amk0U0ItHTZ0VTjrzPiS6YAbLbhnOM=</dsig:DigestValue>
+      <dsig:DigestValue>Xn7tHihvtQsBA5hKOmWW8CRKfe6mWU8FJm+MNfv9R6g=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

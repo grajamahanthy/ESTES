@@ -50,6 +50,7 @@ namespace IntegrationLib.Common
                 //    var authToken = Encoding.ASCII.GetBytes($"{httpObj.UserName}:{httpObj.Password}");
                 //    _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Basic", Convert.ToBase64String(authToken));
                 //}
+                System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11;
                 var request = (HttpWebRequest)WebRequest.Create(httpObj.Url);
                 var data = Encoding.ASCII.GetBytes(httpObj.paramsData);
                 request.Method = "POST";

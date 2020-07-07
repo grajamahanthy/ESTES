@@ -14,7 +14,6 @@ C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionToIBMBrassringScheduler\Integ
 C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionToIBMBrassringScheduler\IntegrationLib\bin\Release\Renci.SshNet.dll
 C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionToIBMBrassringScheduler\IntegrationLib\bin\Release\Newtonsoft.Json.xml
 C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionToIBMBrassringScheduler\IntegrationLib\bin\Release\Renci.SshNet.xml
-C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionToIBMBrassringScheduler\IntegrationLib\obj\Release\IntegrationLib.csprojAssemblyReference.cache
 C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionToIBMBrassringScheduler\IntegrationLib\obj\Release\IntegrationLib.csproj.CoreCompileInputs.cache
 C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionToIBMBrassringScheduler\IntegrationLib\obj\Release\IntegrationLib.csproj.CopyComplete
 C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionToIBMBrassringScheduler\IntegrationLib\obj\Release\IntegrationLib.dll
