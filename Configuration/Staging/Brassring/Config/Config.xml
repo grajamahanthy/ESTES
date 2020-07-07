@@ -1,34 +1,36 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Config>
   <Resources>
     <Resource Name="Source" ResourceType="Location" LocationType="FTP">
       <Ftp>
         <Host>ft.exploredata.com</Host>
-         <!--PROD START-->
-         <!--<UserName>nfgOiLlV2ln3JIybF0dZZw==</UserName> <Password>nMhfkRFyRaqLfdZbSoGnSSsEmeWtjw60qaJDCNZluoY=</Password>-->
-         <!--PROD END-->
-         <UserName>IkvfA1+o82rUsQWute+DQdhRkn4nfVCgt90Ksg5Vnd4=</UserName>
-         <Password>2Rej5C/8X6Tna6+AYyHHa4C3lA+I8py3OHnlvfGFO1A=</Password>
+        <!--PROD START-->
+        <!--<UserName>nfgOiLlV2ln3JIybF0dZZw==</UserName>
+        <Password>nMhfkRFyRaqLfdZbSoGnSSsEmeWtjw60qaJDCNZluoY=</Password>-->
+<!--PROD END-->
+        <UserName>IkvfA1+o82rUsQWute+DQdhRkn4nfVCgt90Ksg5Vnd4=</UserName>
+        <Password>2Rej5C/8X6Tna6+AYyHHa4C3lA+I8py3OHnlvfGFO1A=</Password>
+
         <KeyFilePath/>
         <FtpFolderPath>outgoing\</FtpFolderPath>
         <SuccessFolderPath/>
         <ErrorFolderPath/>
-        <LocalTempProcDirectory>D:\Brassring\Temp\Source\</LocalTempProcDirectory>
+        <LocalTempProcDirectory>E:\Brassring\Temp\Source\</LocalTempProcDirectory>
       </Ftp>
     </Resource>
     <Resource Name="Logging" ResourceType="Location" LocationType="File">
       <File>
-        <Path>D:\Brassring\Logs\</Path>
+        <Path>E:\Brassring\Logs\</Path>
       </File>
     </Resource>
     <Resource Name="SuccessLocation" ResourceType="Location" LocationType="File">
       <File>
-        <Path>D:\Brassring\Success\</Path>
+        <Path>E:\Brassring\Success\</Path>
       </File>
     </Resource>
     <Resource Name="ErrorLocation" ResourceType="Location" LocationType="File">
       <File>
-        <Path>D:\Brassring\Error\</Path>
+        <Path>E:\Brassring\Error\</Path>
       </File>
     </Resource>
   </Resources>
@@ -41,7 +43,7 @@
     <Password/>
     <Mail>
       <From>grajama@velocityhcm.com</From>
-      <To>g.rajamahanthy@gmail.com</To>
+      <To>ATSTeam@estes-express.com,Anne.Beasley@estes-express.com</To>
       <Subject>Log - IBM Brassring Integration</Subject>
       <IsHtml>1</IsHtml>
       <Body>
@@ -71,7 +73,7 @@
     <Id />
   </Recipient>
   <TransactInfo transactType="data">
-    <TransactId>15747</TransactId>
+    <TransactId/>
     <TimeStamp>2020-05-08 08:14 AM</TimeStamp>
   </TransactInfo>
   <Packet>
@@ -110,7 +112,8 @@
 	  <id type="email">grajama@velocityhcm.com</id>
 	  </Recipient>
 	  <TransactInfo transactType="data">
-		<transactId>1234567</transactId>
+		<!--<transactId>1234567</transactId>-->
+                <transactId/>
 		<timeStamp>2020-05-10 12:07 PM</timeStamp>
 	  </TransactInfo>
 	  <Packet>

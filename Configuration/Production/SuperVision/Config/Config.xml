@@ -3,17 +3,17 @@
   <Resources>
     <Resource Name="Logging" ResourceType="Location" LocationType="File">
       <File>
-        <Path>D:\SuperVision\Logs\</Path>
+        <Path>E:\SuperVision\Logs\</Path>
       </File>
     </Resource>
     <!--<Resource Name="SuccessLocation" ResourceType="Location" LocationType="File">
       <File>
-        <Path>D:\SuperVision\Success\</Path>
+        <Path>E:\SuperVision\Success\</Path>
       </File>
     </Resource>
     <Resource Name="ErrorLocation" ResourceType="Location" LocationType="File">
       <File>
-        <Path>D:\SuperVision\Error\</Path>
+        <Path>E:\SuperVision\Error\</Path>
       </File>
     </Resource>-->
   </Resources>
@@ -26,15 +26,15 @@
     <Password/>
     <Mail>
       <From>grajama@velocityhcm.com</From>
-      <To>g.rajamahanthy@gmail.com,grajama@velocityhcm.com.com</To>
-      <Subject>Log - Supervision to IBM Brassring Integration</Subject>
+      <To>ATSTeam@estes-express.com,Anne.Beasley@estes-express.com</To>
+      <Subject>Log - IBM Brassring Integration</Subject>
       <IsHtml>1</IsHtml>
       <Body></Body>
     </Mail>
   </Smtp>
   <Integrations>
     <Integration Type="SuperVisionOrderRequest">
-      <Request Type="Post" Url="https://sandbox.services.esupervision.com/Request/sver/Orders/CreateOrder">
+      <Request Type="Post" Url="https://services.esupervision.com/Request/sver/Orders/CreateOrder">
         <RequestData>
           <Envelope>
           </Envelope>
@@ -43,9 +43,9 @@
             {
               "requestDetails": {
               "requestClientData": {
-              "clientID": 90296,
+              "clientID": 1011,
               "clientName": "Estes Express Lines",
-              "destinationUrl": "\\\\explore\\prd\\internet_sftp\\sft1011sb\\outgoing"
+              "destinationUrl": "\\\\explore\\prd\\internet_sftp\\sft1011\\outgoing"
             },
             "requestDriverData": [
               {
@@ -66,7 +66,7 @@
               "externalReference": "External Reference"
             },
               "userName": "estes.int",
-              "password": "T3am3st3s"
+              "password": "Tr@ckR3cord"
             }
             ]]>
           </PayLoad>

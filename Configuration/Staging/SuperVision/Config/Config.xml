@@ -3,19 +3,19 @@
   <Resources>
     <Resource Name="Logging" ResourceType="Location" LocationType="File">
       <File>
-        <Path>D:\SuperVision\Logs\</Path>
+        <Path>E:\SuperVision\Logs\</Path>
       </File>
     </Resource>
-    <!--<Resource Name="SuccessLocation" ResourceType="Location" LocationType="File">
+    <Resource Name="SuccessLocation" ResourceType="Location" LocationType="File">
       <File>
-        <Path>D:\SuperVision\Success\</Path>
+        <Path>E:\SuperVision\Success\</Path>
       </File>
     </Resource>
     <Resource Name="ErrorLocation" ResourceType="Location" LocationType="File">
       <File>
-        <Path>D:\SuperVision\Error\</Path>
+        <Path>E:\SuperVision\Error\</Path>
       </File>
-    </Resource>-->
+    </Resource>
   </Resources>
   <Smtp>
     <Port>22</Port>
@@ -26,7 +26,7 @@
     <Password/>
     <Mail>
       <From>grajama@velocityhcm.com</From>
-      <To>g.rajamahanthy@gmail.com,grajama@velocityhcm.com.com</To>
+      <To>ATSTeam@estes-express.com,Anne.Beasley@estes-express.com</To>
       <Subject>Log - Supervision to IBM Brassring Integration</Subject>
       <IsHtml>1</IsHtml>
       <Body></Body>

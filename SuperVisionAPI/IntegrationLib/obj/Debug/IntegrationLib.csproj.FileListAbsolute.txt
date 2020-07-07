@@ -6,3 +6,15 @@ C:\Users\graja\source\repos\SuperVisionToIBMBrassringScheduler\IntegrationLib\ob
 C:\Users\graja\source\repos\SuperVisionToIBMBrassringScheduler\IntegrationLib\obj\Debug\IntegrationLib.csproj.CopyComplete
 C:\Users\graja\source\repos\SuperVisionToIBMBrassringScheduler\IntegrationLib\obj\Debug\IntegrationLib.dll
 C:\Users\graja\source\repos\SuperVisionToIBMBrassringScheduler\IntegrationLib\obj\Debug\IntegrationLib.pdb
+C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionAPI\IntegrationLib\bin\Debug\IntegrationLib.dll.config
+C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionAPI\IntegrationLib\bin\Debug\IntegrationLib.dll
+C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionAPI\IntegrationLib\bin\Debug\IntegrationLib.pdb
+C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionAPI\IntegrationLib\bin\Debug\Newtonsoft.Json.dll
+C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionAPI\IntegrationLib\bin\Debug\Renci.SshNet.dll
+C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionAPI\IntegrationLib\bin\Debug\Newtonsoft.Json.xml
+C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionAPI\IntegrationLib\bin\Debug\Renci.SshNet.xml
+C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionAPI\IntegrationLib\obj\Debug\IntegrationLib.csprojAssemblyReference.cache
+C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionAPI\IntegrationLib\obj\Debug\IntegrationLib.csproj.CoreCompileInputs.cache
+C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionAPI\IntegrationLib\obj\Debug\IntegrationLib.csproj.CopyComplete
+C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionAPI\IntegrationLib\obj\Debug\IntegrationLib.dll
+C:\Users\graja\source\repos\ESTES\ESTES\SuperVisionAPI\IntegrationLib\obj\Debug\IntegrationLib.pdb
