@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MVRReports>
+  <MVRReport Version="6" Name="MVR" AbstractDate="2020-07-07" RequestedBy="" ReportID="2241355" Quoteback="22147BR">
+    <Client>
+      <ClientID>1011</ClientID>
+      <ClientName>Estes Express Lines</ClientName>
+    </Client>
+    <Driver>
+      <DriverReferenceNumber>9359473</DriverReferenceNumber>
+      <FirstName>DANIEL</FirstName>
+      <LastName>BRISENO</LastName>
+      <BirthDate>1989-07-23</BirthDate>
+      <Gender>U</Gender>
+    </Driver>
+    <License>
+      <LicenseNumber>D8480784</LicenseNumber>
+      <LicenseState>CA</LicenseState>
+    </License>
+    <LicenseComments />
+    <Error>
+      <Code>000041</Code>
+      <Description>Duplicate request within configured period</Description>
+    </Error>
+  </MVRReport>
+</MVRReports>

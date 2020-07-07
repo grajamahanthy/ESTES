@@ -1,0 +1,80 @@
+﻿@model SuperVisionAPI.Models.DecryptModel
+
+@{
+    ViewBag.Title = "Decrypt";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Decrypt</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Decrypt</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.EncryptedText, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.EncryptedText, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.EncryptedText, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Key, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Key, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Key, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Salt, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Salt, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Salt, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DecryptedText, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DecryptedText, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DecryptedText, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Decrypt" onclick="SetDecryptedString()" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<script>
+    function SetDecryptedString() {
+        var data = { DecryptedText: $("#DecryptedText").val(), Key: $("#Key").val(), EncryptedText: $("#EncryptedText").val() };
+
+        $.ajax({
+            url: "/Encrypt/GetDecryptedString",
+            method: "POST",
+            async: false,
+            data: { DecryptedText: $("#DecryptedText").val(), Key: $("#Key").val(), EncryptedText: $("#EncryptedText").val() },
+            success: function (result) {
+                $("#DecryptedText").val(result);
+            },
+            error:function (result) {
+                alert("Please enter valid Encrypted text and Key.");
+            }
+        });
+    }
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
