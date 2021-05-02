@@ -5,6 +5,7 @@ using Renci.SshNet;
 using Renci.SshNet.Sftp;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -61,86 +62,169 @@ namespace IntegrationLib.Common
         {
             try
             {
-                PrivateKeyFile keyFile = null;
-                if (!string.IsNullOrEmpty(instance.KeyFilePath))
-                    keyFile = new PrivateKeyFile(instance.KeyFilePath);
-
-                var keyFiles = new[] { keyFile };
-                var methods = new List<AuthenticationMethod>();
-                methods.Add(new PasswordAuthenticationMethod(instance.UserName, instance.Password));
-
-                if (!string.IsNullOrEmpty(instance.KeyFilePath))
-                    methods.Add(new PrivateKeyAuthenticationMethod(instance.UserName, keyFiles));
-
-                ConnectionInfo con = new ConnectionInfo(instance.Host, 22, instance.UserName, methods.ToArray());
-                using (var sftp = new SftpClient(con))
+                string isProd = ConfigurationManager.AppSettings["isProd"].ToString();
+                if (isProd == "1")
                 {
-                    sftp.Connect();
-                    var files = sftp.ListDirectory(instance.FtpFolderPath);
+                    PrivateKeyFile keyFile = null;
+                    if (!string.IsNullOrEmpty(instance.KeyFilePath))
+                        keyFile = new PrivateKeyFile(instance.KeyFilePath);
+
+                    var keyFiles = new[] { keyFile };
+                    var methods = new List<AuthenticationMethod>();
+                    methods.Add(new PasswordAuthenticationMethod(instance.UserName, instance.Password));
+
+                    if (!string.IsNullOrEmpty(instance.KeyFilePath))
+                        methods.Add(new PrivateKeyAuthenticationMethod(instance.UserName, keyFiles));
+
+                    ConnectionInfo con = new ConnectionInfo(instance.Host, 22, instance.UserName, methods.ToArray());
+                    using (var sftp = new SftpClient(con))
+                    {
+                        sftp.Connect();
+                        var files = sftp.ListDirectory(instance.FtpFolderPath);
+                        var atleastOneFileProcessed = false;
+
+                        foreach (SftpFile file in files)
+                        {
+                            if (!file.IsDirectory && !file.Name.ToLower().Contains("success")
+                                && !file.Name.ToLower().Contains("error") && file.Name.ToLower().EndsWith(".xml"))
+                            {
+                                string sourceXml = string.Empty;
+                                bool isExecSuccess = false;
+                                atleastOneFileProcessed = true;
+                                using (Stream localFile = File.Open(instance.LocalTempProcDirectory + file.Name, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                                {
+
+                                    //Load Xml file from FTP.
+                                    sftp.DownloadFile(instance.FtpFolderPath + file.Name, localFile);
+                                    string xmlString = string.Empty;
+                                    var xmlDoc = new XmlDocument();
+                                    xmlDoc.Load(sftp.OpenRead(instance.FtpFolderPath + file.Name));
+                                    sourceXml = xmlDoc.InnerXml;
+                                    SerializationHelper sH = new SerializationHelper();
+                                    MVRReports mR = sH.Deserialize<MVRReports>(sourceXml);
+
+                                    //Log FirstName, LastName, Resume Key
+                                    string titleHtml = "<br/><br/>" + "<b>File Name: </b>" + file.Name + "<br/>" + "<b>First Name: </b>" + mR.MVRReport.Driver.FirstName + "<br/>";
+                                    if (!string.IsNullOrEmpty(mR.MVRReport.Driver.MiddleName))
+                                        titleHtml = titleHtml + "<b>Middle Name: </b>" + mR.MVRReport.Driver.MiddleName + "<br/>";
+                                    titleHtml = titleHtml + "<b>Last Name: </b>" + mR.MVRReport.Driver.LastName + "<br/>" + "<b>Resume key: </b>" + mR.MVRReport.Driver.DriverReferenceNumber;
+
+                                    logger.Log(LogType.Html, titleHtml);
+
+
+                                    //Process XML
+                                    if (!string.IsNullOrEmpty(mR.MVRReport.Driver.FirstName) &&
+                                       !string.IsNullOrEmpty(mR.MVRReport.Driver.LastName) &&
+                                       !string.IsNullOrEmpty(Convert.ToString(mR.MVRReport.Driver.DriverReferenceNumber)) &&
+                                       !string.IsNullOrEmpty(mR.MVRReport.Quoteback))
+                                    {
+                                        isExecSuccess = await ExecIntegrationSteps(sourceXml);
+                                    }
+                                    else
+                                    {
+                                        isExecSuccess = false;
+                                        logger.Log(LogType.Error, file.Name + " doesn't have First name, Last name, Auto ReqId, or ResumeKey.");
+                                    }
+                                }
+
+                                //Move the Source XML to Success/Error folder after process.
+                                if (isExecSuccess)
+                                {
+                                    logger.Log(LogType.Success, file.Name + " is processed successfully.");
+                                    MoveToFtpLocation(file.Name, "SuccessLocation", "Location");
+
+                                    //To be removed--sftp.UploadFile(localFile, instance.SuccessFolderPath + file.Name, true);
+                                    //To be Uncommented--
+                                    sftp.RenameFile(instance.FtpFolderPath + file.Name, instance.FtpFolderPath + file.Name.Replace(".xml", $"_{DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss").Replace(" ", string.Empty).Replace("\\", string.Empty).Replace("-", string.Empty).Replace(":", string.Empty)}_success.xml"));
+                                }
+                                else
+                                {
+                                    logger.Log(LogType.Error, file.Name + " is not processed successfully.");
+                                    MoveToFtpLocation(file.Name, "ErrorLocation", "Location");
+
+                                    //To be removed--sftp.UploadFile(localFile, instance.ErrorFolderPath + file.Name, true);
+                                    //To be Uncommented--
+                                    sftp.RenameFile(instance.FtpFolderPath + file.Name, instance.FtpFolderPath + file.Name.Replace(".xml", $"_{DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss").Replace(" ", string.Empty).Replace("\\", string.Empty).Replace("-", string.Empty).Replace(":", string.Empty)}_error.xml"));
+                                }
+
+                                //Delete the Source XML from FTP after process.
+                                //sftp.DeleteFile(instance.FtpFolderPath + file.Name);
+
+                            }
+                        }
+
+
+                        logger.Log(LogType.Html, (!atleastOneFileProcessed ? "No MVR reports are available for processing." : "") + "</body></html>", null, true);
+                        sftp.Disconnect();
+                    }
+                }
+                else
+                {
+                    
+                    var resource = (from R in config.Resources where R.ResourceType == "Location" && R.Name == "LocalSource" select R).ToList().FirstOrDefault();
+                    string[] files;
+                    files = Directory.GetFiles(resource.File.Path, "*.xml");
                     var atleastOneFileProcessed = false;
 
-                    foreach (SftpFile file in files)
+                    foreach (string file in files)
                     {
-                        if (!file.IsDirectory && !file.Name.ToLower().Contains("success")
-                            && !file.Name.ToLower().Contains("error") && file.Name.ToLower().EndsWith(".xml"))
+                        if (!file.ToLower().Contains("success")
+                            && !file.ToLower().Contains("error"))
                         {
                             string sourceXml = string.Empty;
                             bool isExecSuccess = false;
                             atleastOneFileProcessed = true;
-                            using (Stream localFile = File.Open(instance.LocalTempProcDirectory + file.Name, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+
+
+                            //Load Xml file from FTP.
+                            string xmlString = string.Empty;
+                            var xmlDoc = new XmlDocument();
+                            xmlDoc.Load(file);
+                            sourceXml = xmlDoc.InnerXml;
+                            SerializationHelper sH = new SerializationHelper();
+                            MVRReports mR = sH.Deserialize<MVRReports>(sourceXml);
+
+                            //Log FirstName, LastName, Resume Key
+                            string titleHtml = "<br/><br/>" + "<b>File Name: </b>" + file + "<br/>" + "<b>First Name: </b>" + mR.MVRReport.Driver.FirstName + "<br/>";
+                            if (!string.IsNullOrEmpty(mR.MVRReport.Driver.MiddleName))
+                                titleHtml = titleHtml + "<b>Middle Name: </b>" + mR.MVRReport.Driver.MiddleName + "<br/>";
+                            titleHtml = titleHtml + "<b>Last Name: </b>" + mR.MVRReport.Driver.LastName + "<br/>" + "<b>Resume key: </b>" + mR.MVRReport.Driver.DriverReferenceNumber;
+
+                            logger.Log(LogType.Html, titleHtml);
+
+
+                            //Process XML
+                            if (!string.IsNullOrEmpty(mR.MVRReport.Driver.FirstName) &&
+                                !string.IsNullOrEmpty(mR.MVRReport.Driver.LastName) &&
+                                !string.IsNullOrEmpty(Convert.ToString(mR.MVRReport.Driver.DriverReferenceNumber)) &&
+                                !string.IsNullOrEmpty(mR.MVRReport.Quoteback))
                             {
-
-                                //Load Xml file from FTP.
-                                sftp.DownloadFile(instance.FtpFolderPath + file.Name, localFile);
-                                string xmlString = string.Empty;
-                                var xmlDoc = new XmlDocument();
-                                xmlDoc.Load(sftp.OpenRead(instance.FtpFolderPath + file.Name));
-                                sourceXml = xmlDoc.InnerXml;
-                                SerializationHelper sH = new SerializationHelper();
-                                MVRReports mR = sH.Deserialize<MVRReports>(sourceXml);
-
-                                //Log FirstName, LastName, Resume Key
-                                string titleHtml = "<br/><br/>" + "<b>File Name: </b>" + file.Name + "<br/>" + "<b>First Name: </b>" + mR.MVRReport.Driver.FirstName + "<br/>";
-                                if (!string.IsNullOrEmpty(mR.MVRReport.Driver.MiddleName))
-                                    titleHtml = titleHtml + "<b>Middle Name: </b>" + mR.MVRReport.Driver.MiddleName + "<br/>";
-                                titleHtml = titleHtml + "<b>Last Name: </b>" + mR.MVRReport.Driver.LastName + "<br/>" + "<b>Resume key: </b>" + mR.MVRReport.Driver.DriverReferenceNumber;
-
-                                logger.Log(LogType.Html, titleHtml);
-
-
-                                //Process XML
-                                if (!string.IsNullOrEmpty(mR.MVRReport.Driver.FirstName) &&
-                                   !string.IsNullOrEmpty(mR.MVRReport.Driver.LastName) &&
-                                   !string.IsNullOrEmpty(Convert.ToString(mR.MVRReport.Driver.DriverReferenceNumber)) &&
-                                   !string.IsNullOrEmpty(mR.MVRReport.Quoteback))
-                                {
-                                    isExecSuccess = await ExecIntegrationSteps(sourceXml);
-                                }
-                                else
-                                {
-                                    isExecSuccess = false;
-                                    logger.Log(LogType.Error, file.Name + " doesn't have First name, Last name, Auto ReqId, or ResumeKey.");
-                                }
+                                isExecSuccess = await ExecIntegrationSteps(sourceXml);
+                            }
+                            else
+                            {
+                                isExecSuccess = false;
+                                logger.Log(LogType.Error, file + " doesn't have First name, Last name, Auto ReqId, or ResumeKey.");
                             }
 
                             //Move the Source XML to Success/Error folder after process.
                             if (isExecSuccess)
                             {
-                                logger.Log(LogType.Success, file.Name + " is processed successfully.");
-                                MoveToFtpLocation(file.Name, "SuccessLocation", "Location");
+                                logger.Log(LogType.Success, file + " is processed successfully.");
+                                MoveToFtpLocation(file, "SuccessLocation", "Location");
 
                                 //To be removed--sftp.UploadFile(localFile, instance.SuccessFolderPath + file.Name, true);
                                 //To be Uncommented--
-                                sftp.RenameFile(instance.FtpFolderPath + file.Name, instance.FtpFolderPath + file.Name.Replace(".xml", $"_{DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss").Replace(" ", string.Empty).Replace("\\", string.Empty).Replace("-", string.Empty).Replace(":", string.Empty)}_success.xml"));
+                                File.Move(file, file.Replace(".xml", $"_{DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss").Replace(" ", string.Empty).Replace("\\", string.Empty).Replace("-", string.Empty).Replace(":", string.Empty)}_success.xml"));
                             }
                             else
                             {
-                                logger.Log(LogType.Error, file.Name + " is not processed successfully.");
-                                MoveToFtpLocation(file.Name, "ErrorLocation", "Location");
+                                logger.Log(LogType.Error, file + " is not processed successfully.");
+                                MoveToFtpLocation(file, "ErrorLocation", "Location");
 
                                 //To be removed--sftp.UploadFile(localFile, instance.ErrorFolderPath + file.Name, true);
                                 //To be Uncommented--
-                                sftp.RenameFile(instance.FtpFolderPath + file.Name, instance.FtpFolderPath + file.Name.Replace(".xml", $"_{DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss").Replace(" ", string.Empty).Replace("\\", string.Empty).Replace("-", string.Empty).Replace(":", string.Empty)}_error.xml"));
+                                File.Move(file, file.Replace(".xml", $"_{DateTime.Now.ToString("MM-dd-yyyy hh:mm:ss").Replace(" ", string.Empty).Replace("\\", string.Empty).Replace("-", string.Empty).Replace(":", string.Empty)}_error.xml"));
                             }
 
                             //Delete the Source XML from FTP after process.
@@ -151,7 +235,6 @@ namespace IntegrationLib.Common
 
 
                     logger.Log(LogType.Html, (!atleastOneFileProcessed ? "No MVR reports are available for processing." : "") + "</body></html>", null, true);
-                    sftp.Disconnect();
                 }
             }
             catch (Exception ex)
