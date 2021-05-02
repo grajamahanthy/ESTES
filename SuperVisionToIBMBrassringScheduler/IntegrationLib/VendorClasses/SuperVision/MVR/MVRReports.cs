@@ -435,7 +435,7 @@ namespace IntegrationLib.VendorClasses.SuperVision.MVR
 
         private string cDLStatusField;
 
-        private byte clientRiskPointsField;
+        private decimal clientRiskPointsField;
 
         /// <remarks/>
         public string LicenseNumber
@@ -477,7 +477,7 @@ namespace IntegrationLib.VendorClasses.SuperVision.MVR
         }
 
         /// <remarks/>
-        public byte ClientRiskPoints
+        public decimal ClientRiskPoints
         {
             get
             {

@@ -63,7 +63,7 @@ namespace IntegrationLib.VendorClasses.SuperVision.MVR
 
         private string requestedByField;
 
-        private ushort reportIDField;
+        private int reportIDField;
 
         /// <remarks/>
         public MVRReportsMVRReportClient Client
@@ -242,7 +242,7 @@ namespace IntegrationLib.VendorClasses.SuperVision.MVR
 
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
-        public ushort ReportID
+        public int ReportID
         {
             get
             {
@@ -262,14 +262,14 @@ namespace IntegrationLib.VendorClasses.SuperVision.MVR
     public partial class MVRReportsMVRReportClient
     {
 
-        private uint clientIDField;
+        private int clientIDField;
 
         private string clientNameField;
 
         private string divisionNameField;
 
         /// <remarks/>
-        public uint ClientID
+        public int ClientID
         {
             get
             {
@@ -315,7 +315,7 @@ namespace IntegrationLib.VendorClasses.SuperVision.MVR
     public partial class MVRReportsMVRReportDriver
     {
 
-        private byte driverReferenceNumberField;
+        private int driverReferenceNumberField;
 
         private string workStatusField;
 
@@ -325,12 +325,12 @@ namespace IntegrationLib.VendorClasses.SuperVision.MVR
 
         private string lastNameField;
 
-        private System.DateTime birthDateField;
+        private string birthDateField;
 
         private string genderField;
 
         /// <remarks/>
-        public byte DriverReferenceNumber
+        public int DriverReferenceNumber
         {
             get
             {
@@ -395,8 +395,8 @@ namespace IntegrationLib.VendorClasses.SuperVision.MVR
         }
 
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType = "date")]
-        public System.DateTime BirthDate
+        //[System.Xml.Serialization.XmlElementAttribute(DataType = "string")]
+        public string BirthDate
         {
             get
             {
@@ -435,7 +435,7 @@ namespace IntegrationLib.VendorClasses.SuperVision.MVR
 
         private string cDLStatusField;
 
-        private byte clientRiskPointsField;
+        private decimal clientRiskPointsField;
 
         /// <remarks/>
         public string LicenseNumber
@@ -477,7 +477,7 @@ namespace IntegrationLib.VendorClasses.SuperVision.MVR
         }
 
         /// <remarks/>
-        public byte ClientRiskPoints
+        public decimal ClientRiskPoints
         {
             get
             {
@@ -740,7 +740,7 @@ namespace IntegrationLib.VendorClasses.SuperVision.MVR
 
         private string acknowledgementStatusField;
 
-        private ushort alertIDField;
+        private int alertIDField;
 
         private MVRReportsMVRReportAdditionalAlertAttribute[] attributesField;
 
@@ -785,7 +785,7 @@ namespace IntegrationLib.VendorClasses.SuperVision.MVR
         }
 
         /// <remarks/>
-        public ushort AlertID
+        public int AlertID
         {
             get
             {
